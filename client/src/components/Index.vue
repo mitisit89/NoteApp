@@ -1,8 +1,8 @@
 <template>
 	<div class="conteiner">
-		<hedear>
+		<heder>
 			<NavMenu />
-		</hedear>
+		</heder>
 
 		<h1>The Book of Recipe</h1>
 		<hr />
