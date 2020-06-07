@@ -57,7 +57,7 @@
 	}
 	.row {
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: space-around;
 		position: relative;
 		flex-direction: inherit;
 		padding: 0.5rem 2rem;
