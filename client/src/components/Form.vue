@@ -19,7 +19,8 @@
                         id: Date.now(),
                         title:this.title
                     };
-                    this.$emit('add-item', newObjectItem )
+					this.$emit('add-item', newObjectItem )
+					this.title=''
 				}
 			}
 		}
@@ -29,6 +30,7 @@
 <style  scoped>
 form {
 	display: flex;
+	align-self: start;
 }
 input {
 	width: 400px;
