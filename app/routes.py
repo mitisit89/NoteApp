@@ -14,5 +14,6 @@ class HelloWorld(Resource):
             i = {'id': str(post.id), 'title': post.title, 'slug': post.slug, 'body': post.body, 'time': str(post.time_stamp)}
             data.append(i)
         return  data
-        
+    def post(self):
+            pass
 api.add_resource(HelloWorld,  '/api/hello')

@@ -7,3 +7,6 @@ client/node_modules
 .idea/inspectionProfiles/Project_Default.xml
 .idea
 .gitignore
+.vscode
+venv
+__pycache__
