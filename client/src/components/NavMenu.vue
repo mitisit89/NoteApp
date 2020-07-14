@@ -3,7 +3,7 @@
 		<div class="nav-menu">
 			<ul class="nav-list">
 				<li class="nav-link">
-					<a href>Главая</a>
+					<router-link to='/'>Главная</router-link>
 				</li>
 
 				<li class="nav-link">
