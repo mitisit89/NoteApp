@@ -1,6 +1,5 @@
-
-from flask import Blueprint,jsonify
-from app import app
+from flask import Blueprint, jsonify, request
+from app import app, db
 from app.models import Recipe
 
 rest = Blueprint('rest', __name__)
@@ -9,7 +8,7 @@ rest = Blueprint('rest', __name__)
 @app.route('/api/', methods=['GET'])
 def get():
     posts = Recipe.query.all()
-    data =[]
+    data = []
     for post in posts:
         i = {'id': str(post.id), 'title': post.title, 'slug': post.slug, 'body': post.body,
              'time': str(post.time_stamp)}
@@ -17,5 +16,11 @@ def get():
     return jsonify(data)
 
 
+@app.route('/api/pst', methods=['POST'])
 def post():
-    pass
+    client_json = request.get_json()
+    title = client_json['title']
+    body = client_json['body']
+    data = Recipe(title=title, body=body)
+    db.session.add(data)
+    db.session.commit()
