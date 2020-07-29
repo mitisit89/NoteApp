@@ -1,4 +1,5 @@
 client/node_modules
+client/dist
 .idea/CookingBook.iml
 .idea/modules.xml
 .idea/vcs.xml
