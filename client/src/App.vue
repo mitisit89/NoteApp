@@ -1,37 +1,38 @@
 <template>
-	<div id="app">
-			<NavMenu/>
-	<router-view />
-	</div>
+  <div id="app">
+    <NavMenu/>
+    <router-view/>
+  </div>
 </template>
 <script>
-import NavMenu from '@/components/NavMenu'
+import NavMenu from "@/components/NavMenu";
+
 export default {
-	components:{
-		NavMenu
-	}
-}
+  components: {
+    NavMenu,
+  },
+};
 </script>
 
-<style >
+<style>
 @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap&subset=cyrillic-ext");
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-	font-family: "Ubuntu", sans-serif;
-	background-color: #f1f5ff;
-	margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  background-color: #f1f5ff;
+  margin: 0;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 li {
-	list-style-type: none;
+  list-style-type: none;
 }
 </style>
