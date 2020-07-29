@@ -5,7 +5,7 @@ from app.models import Recipe
 rest = Blueprint('rest', __name__)
 
 
-@app.route('/api/', methods=['GET'])
+@app.route('/api/getData', methods=['GET'])
 def get():
     posts = Recipe.query.all()
     data = []
@@ -16,7 +16,7 @@ def get():
     return jsonify(data)
 
 
-@app.route('/api/pst', methods=['POST'])
+@app.route('/api/postData', methods=['POST'])
 def post():
     client_json = request.get_json()
     title = client_json['title']
@@ -24,3 +24,4 @@ def post():
     data = Recipe(title=title, body=body)
     db.session.add(data)
     db.session.commit()
+    return 200
