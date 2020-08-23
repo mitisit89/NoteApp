@@ -32,8 +32,7 @@ export default {
   methods: {
     RemoveItem(id) {
       console.log(id);
-      this.$emit("remove-item", id);
-    },
+    this.todos=this.todos.filter(t => t.id !==id)  },
     AddItem(item) {
       console.log(item);
       this.$emit("add-item", item);
@@ -62,7 +61,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   position: relative;
-  flex-direction: inherit;
+  flex-direction:initial;
   padding: 0.5rem 2rem;
   margin-bottom: 1.5rem;
   align-content: stretch;

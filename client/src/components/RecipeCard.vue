@@ -4,7 +4,6 @@
     <div class="card-body">{{ todo.title }}</div>
     <div class="meta"><span class="datetime">datetime</span>
       <span class="tags">tags</span></div>
-      <div > {{todo}}</div>
     <button class="rm-btn" v-on:click="$emit('remove-item', todo.id)">
       &times;
     </button>
