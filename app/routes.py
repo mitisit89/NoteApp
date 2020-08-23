@@ -26,11 +26,12 @@ def post():
     db.session.commit()
     return 200
 
-@app.route(methods=['DELETE'])
+
+@app.route('/api/delData', methods=['DELETE'])
 def delete():
-    item_id=request.get_json()
-    get_id=item_id('id')
-    delete_item=Recipe.query.filter(Recipe.id==get_id)
+    item_id = request.get_json()
+    get_id = item_id('id')
+    delete_item = Recipe.query.filter(Recipe.id == get_id)
     db.session.delete(delete_item)
     db.session.commit()
-    #посмотерть доки sql 
+    # посмотерть доки sql
