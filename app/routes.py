@@ -18,20 +18,26 @@ def get():
 
 @app.route('/api/postData', methods=['POST'])
 def post():
-    client_json = request.get_json()
+    client_json = {
+        'title': request.json['title'],
+        'body': request.json['body']
+    }
+    print(client_json)
     title = client_json['title']
+    print(title)
     body = client_json['body']
     data = Recipe(title=title, body=body)
     db.session.add(data)
     db.session.commit()
-    return 200
+    return '201'  # нужно возвращать строку
 
 
 @app.route('/api/delData', methods=['DELETE'])
 def delete():
-    item_id = request.get_json()
-    get_id = item_id('id')
-    delete_item = Recipe.query.filter(Recipe.id == get_id)
+    item_id = {'id': request.json['id']}
+    get_id = item_id['id']
+    delete_item = Recipe.query.get(get_id)
     db.session.delete(delete_item)
     db.session.commit()
+    return '201'
     # посмотерть доки sql
