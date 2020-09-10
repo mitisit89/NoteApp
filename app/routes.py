@@ -16,7 +16,7 @@ def get():
     return jsonify(data)
 
 
-@app.route('/api/postData', methods=['POST'])
+@app.route('/api/postData', methods=['Get','POST'])
 def post():
     client_json = {
         'title': request.json['title'],
@@ -32,11 +32,9 @@ def post():
     return '201'  # нужно возвращать строку
 
 
-@app.route('/api/delData', methods=['DELETE'])
-def delete():
-    item_id = {'id': request.json['id']}
-    get_id = item_id['id']
-    delete_item = Recipe.query.get(get_id)
+@app.route('/api/delData/<id>', methods=['DELETE'])
+def delete(id):
+    delete_item = Recipe.query.get(id)
     db.session.delete(delete_item)
     db.session.commit()
     return '201'

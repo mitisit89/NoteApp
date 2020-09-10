@@ -25,17 +25,31 @@ export default {
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/todos/')
+    fetch('http://127.0.0.1:5000/api/getData',{
+      headers:{
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    })
         .then(response => response.json())
         .then(json =>{this.todos=json})
   },
   methods: {
     RemoveItem(id) {
       console.log(id);
-    this.todos=this.todos.filter(t => t.id !==id)  },
+    this.todos=this.todos.filter(t => t.id !==id)
+
+      fetch(`http://127.0.0.1:5000/api/delData/${id}`,{
+        method:'DELETE'
+      })
+      },
     AddItem(item) {
       console.log(item);
       this.$emit("add-item", item);
+      fetch('http://127.0.0.1:5000/api/postData',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json;charset=utf-8'},
+        body:JSON.stringify({title:item.title,body:'dsdsaadfa'})
+      }).then(json=>console.log(json))
     },
   },
 };
