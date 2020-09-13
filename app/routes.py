@@ -32,9 +32,9 @@ def post():
     return '201'  # нужно возвращать строку
 
 
-@app.route('/api/delData/<id>', methods=['DELETE'])
-def delete(id):
-    delete_item = Recipe.query.get(id)
+@app.route('/api/delData/<elem_id>', methods=['DELETE'])
+def delete(elem_id):
+    delete_item = Recipe.query.get(elem_id)
     db.session.delete(delete_item)
     db.session.commit()
     return '201'

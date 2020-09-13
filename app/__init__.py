@@ -10,9 +10,11 @@ db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 from app.models import User, Recipe
 from app.routes import rest
-from  app.auth import auth
+from app.auth import auth
+
 app.register_blueprint(rest)
 app.register_blueprint(auth)
+
 
 @app.route('/')
 def index():

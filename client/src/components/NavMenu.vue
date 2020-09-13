@@ -9,14 +9,6 @@
         <li class="nav-link">
           <router-link to='/page2'>Page2</router-link>
         </li>
-
-        <li class="nav-link">
-          <a href="#">Lorem4</a>
-        </li>
-        <li class="nav-link">
-          <a href="#">Admin</a>
-        </li>
-
         <li class="nav-link">
           <a href="#">Создать запись</a>
         </li>
@@ -24,12 +16,13 @@
           <a href="#">Выход</a>
         </li>
         <li class="nav-link">
-          <a href="#">Вход</a>
+          <router-link to="/login">Вход</router-link>
         </li>
         <li class="nav-link">
-          <a href="#">Регистрация</a>
+        <router-link to ='/registration'>Регистрация </router-link>
         </li>
       </ul>
+
     </div>
   </nav>
 </template>
@@ -48,6 +41,7 @@ export default {};
   margin: 10px;
   position: relative;
   align-content: space-between;
+  border-radius: 10px;
 }
 
 .nav-list,

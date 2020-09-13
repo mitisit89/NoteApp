@@ -17,7 +17,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap&subset=cyrillic-ext");
 
-* {
+*,::before,::after {
   box-sizing: border-box;
 }
 
