@@ -11,7 +11,6 @@
 <script>
 import RecipeCard from "@/components/RecipeCard";
 import Form from "@/components/Form";
-
 export default {
   components: {
     RecipeCard,

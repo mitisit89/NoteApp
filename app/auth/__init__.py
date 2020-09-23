@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request,make_response
 from app import User, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
