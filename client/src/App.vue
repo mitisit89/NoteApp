@@ -6,6 +6,7 @@
 </template>
 <script>
 import NavMenu from "@/components/NavMenu";
+import "material-design-icons/iconfont/material-icons.css";
 
 export default {
   components: {
@@ -26,6 +27,8 @@ body {
   font-family: "Ubuntu", sans-serif;
   background-color: #f1f5ff;
   margin: 0;
+  padding: 0;
+  
 }
 
 a {
