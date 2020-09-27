@@ -1,13 +1,13 @@
 <template>
-  <nav class="navigation">
+  <nav id="navigation">
     <div class="nav-menu">
       <ul class="nav-list">
         <li class="nav-link">
-          <router-link to='/'>Главная</router-link>
+          <router-link to="/">Главная</router-link>
         </li>
 
         <li class="nav-link">
-          <router-link to='/page2'>Page2</router-link>
+          <router-link to="/page2">Page2</router-link>
         </li>
         <li class="nav-link">
           <a href="#">Создать запись</a>
@@ -19,20 +19,23 @@
           <router-link to="/login">Вход</router-link>
         </li>
         <li class="nav-link">
-        <router-link to ='/registration'>Регистрация </router-link>
+          <router-link to="/registration">Регистрация </router-link>
         </li>
       </ul>
-
     </div>
+    <button id="search" type="submint">
+      <span class="material-icons"> search </span>
+    </button>
   </nav>
 </template>
 
 <script>
-export default {};
+
+
 </script>
 
 <style>
-.navigation {
+#navigation {
   display: flex;
   flex-flow: row;
   background-color: #3d3d3f;
@@ -42,6 +45,8 @@ export default {};
   position: relative;
   align-content: space-between;
   border-radius: 10px;
+  position: fixed;
+  z-index: 1000;
 }
 
 .nav-list,
@@ -63,5 +68,15 @@ export default {};
   align-content: inherit;
   align-content: space-between;
 }
+#search {
+  margin: 10px 10px 10px;
+  overflow: hidden;
 
+  border: none;
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+}
 </style>

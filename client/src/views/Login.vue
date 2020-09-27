@@ -1,11 +1,16 @@
 <template>
-  <form>
+  <form @submit.prevent="Login" name="LoginForm">
     <h1>Login</h1>
     <div class="form-input">
-      <input type="email" name id placeholder="email" />
+      <input type="email" name="email" placeholder="email" v-model="email" />
     </div>
     <div class="form-input">
-      <input type="password" placeholder="password" />
+      <input
+        type="password"
+        name="passowrd"
+        placeholder="password"
+        v-model="password"
+      />
     </div>
     <button type="submit">Sing in</button>
   </form>
@@ -26,19 +31,42 @@ form {
 button {
   width: 14rem;
   height: 2rem;
-  color:white;
+  color: white;
   border-radius: 90px;
   border: none;
-  background:#3d3d3f;
+  background: #3d3d3f;
   display: inline-block;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 input {
   height: 3rem;
-
 }
 .form-input {
   margin-bottom: 10px;
-
 }
 </style>
+<script>
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    Login: function () {
+    let loginData = {
+      email:this.email,
+      password:this.password
+    }
+     fetch('http://127.0.0.1:5000/api/auth/login/',{
+       method:'GET',
+       headers:{
+         'Content-Type': 'application/json;charset=utf-8'
+       },
+       body:JSON.stringify(loginData)
+     }).catch(e=>console.error(e))
+    },
+  },
+};
+</script>
