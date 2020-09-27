@@ -2,10 +2,11 @@
   <div class="card">
     <h2>{{ todo.id }}</h2>
     <div class="card-body">{{ todo.title }}</div>
-    <div class="meta"><span class="datetime">datetime</span>
-      <span class="tags">tags</span></div>
+    <div class="meta">
+      <span class="datetime">datetime</span> <span class="tags">tags</span>
+    </div>
     <button class="rm-btn" v-on:click="$emit('remove-item', todo.id)">
-      &times;
+      <span class="material-icons"> delete </span>
     </button>
   </div>
 </template>
@@ -14,9 +15,9 @@ export default {
   props: {
     todo: {
       type: Object,
-      require: true
-    }
-  }
+      require: true,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -24,20 +25,18 @@ export default {
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid black;
-  padding: 1.25rem;
-  margin-top: 2%;
-
+  border: none;
+  padding: 4rem 9rem;
+  margin: 2% 2% 2%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
+  background: white;
 }
 
 .rm-btn {
-  border-radius: 40%;
-  padding: 1rem;
-  width: 10px;
-  top: 0;
-  right: 0;
-  position: static;
-
+  border-radius: 4%;
+  margin: 10px 10px 10px;
+  border: none;
 }
 
 h2 {
