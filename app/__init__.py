@@ -1,21 +1,15 @@
-from flask import Flask, send_file
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
+from flask_cors import CORS
 from config import Configuration
 
-app = Flask(__name__, static_folder='../client/dist', static_url_path='')
+app = Flask(__name__)
 app.config.from_object(Configuration)
+CORS(app)
 db = SQLAlchemy(app)
 
 # migrate = Migrate(app, db)
 from app.models import User, Recipe
-from app.routes import rest
-from app.auth import auth
-
-app.register_blueprint(rest)
-app.register_blueprint(auth)
-
-
-@app.route('/')
-def index():
-    return send_file('../client/dist/index.html')
+from app import auth
+from app import routes

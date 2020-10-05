@@ -59,10 +59,10 @@ export default {
       email:this.email,
       password:this.password
     }
-     fetch('http://127.0.0.1:5000/api/auth/login/',{
-       method:'GET',
+     fetch('http://127.0.0.1:5000/api/auth/login',{
+       method:'POST',
        headers:{
-         'Content-Type': 'application/json;charset=utf-8'
+         'Content-Type': 'application/json;utf-8'
        },
        body:JSON.stringify(loginData)
      }).catch(e=>console.error(e))

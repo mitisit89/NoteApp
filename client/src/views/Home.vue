@@ -24,9 +24,11 @@ export default {
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/todos/1',{
+    fetch('http://127.0.0.1:5000/api/getData',{
       headers:{
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
+        'Allow':'http://10.0.1.9:8080/',
+        
       }
     })
         .then(response => response.json())
