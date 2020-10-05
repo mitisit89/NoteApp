@@ -65,6 +65,12 @@ export default {
          'Content-Type': 'application/json;utf-8'
        },
        body:JSON.stringify(loginData)
+     }).then(response=>{
+       if (response.ok){
+         console.log('ok');
+       }else{
+         console.log('нема юзера и праоля');
+       }
      }).catch(e=>console.error(e))
     },
   },
