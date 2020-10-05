@@ -1,9 +1,9 @@
-from flask import Blueprint, request, make_response, abort
-import uuid
-from app import app
-from app.models import User
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import request, abort
 from flask_cors import cross_origin
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from app import app, db
+from app.models import User
 
 
 @app.route('/api/auth/login', methods=['POST'])
