@@ -67,7 +67,7 @@ export default {
        body:JSON.stringify(loginData)
      }).then(response=>{
        if (response.ok){
-         console.log('ok');
+          this.$router.push('/')
        }else{
          console.log('нема юзера и праоля');
        }
