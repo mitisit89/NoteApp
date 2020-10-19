@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1>The Book of Recipe</h1>
-    <Form @add-item="AddItem"/>
     <div class="row">
       <RecipeCard v-for="todo of todos" v-bind:todo="todo" :key="todo.id" v-on:remove-item="RemoveItem"/>
     </div>
@@ -10,11 +9,9 @@
 
 <script>
 import RecipeCard from "@/components/RecipeCard";
-import Form from "@/components/Form";
 export default {
   components: {
     RecipeCard,
-    Form,
   },
   data() {
     return {
@@ -43,15 +40,7 @@ export default {
         method:'DELETE'
       })
       },
-    AddItem(item) {
-      console.log(item);
-      this.$emit("add-item", item);
-      fetch('http://127.0.0.1:5000/api/postData',{
-        method:'POST',
-        headers:{'Content-Type': 'application/json;charset=utf-8'},
-        body:JSON.stringify({title:item.title,body:'dsdsaadfa'})
-      }).then(json=>console.log(json))
-    },
+    
   },
 };
 </script>
