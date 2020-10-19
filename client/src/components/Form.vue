@@ -1,6 +1,8 @@
 <template>
   <form @submit.prevent="onSubmint">
+    <h2>Добавить</h2>
     <input type="text" v-model="title"/>
+    <textarea v-model="body"></textarea>
     <button type="submit">Add</button>
   </form>
 </template>
@@ -8,19 +10,19 @@
 export default {
   data() {
     return {
-      title: ""
+      title: "",
+      body:""
     };
   },
   methods: {
     onSubmint() {
-      console.log("on", this.title);
       if (this.title.trim()) {
         const newObjectItem = {
-          id: Date.now(),
-          title: this.title
+
+          title: this.title,
+          body:this.body
         };
         this.$emit('add-item', newObjectItem)
-        this.title = ''
       }
     }
   }
@@ -29,8 +31,15 @@ export default {
 
 <style scoped>
 form {
-  display: flex;
-  align-self: start;
+align-self: flex-start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 17rem;
+  width: 14rem;
+  top: 20%;
+  left: 36%;
+  position: absolute;
 }
 
 input {
