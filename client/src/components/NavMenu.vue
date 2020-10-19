@@ -10,7 +10,7 @@
           <router-link to="/page2">Page2</router-link>
         </li>
         <li class="nav-link">
-          <a href="#">Создать запись</a>
+          <router-link to="/create">create</router-link>
         </li>
         <li class="nav-link">
           <a href="#">Выход</a>
