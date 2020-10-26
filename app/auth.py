@@ -1,21 +1,29 @@
-from flask import request, abort
+from flask import request, make_response, jsonify
 from flask_cors import cross_origin
+from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import app, db
 from app.models import User
 
+"""
+Если я правильно понял ,то авторизация по кукам работает только если приложение работает на одном домене
+"""
 
-@app.route('/api/auth/login', methods=['POST'])
-@cross_origin()
+
+@app.route('/api/auth/login', methods=['POST', 'GET'])
+@cross_origin(supports_credentials=True)
 def check_current_user():
     current_user = request.get_json()
     print(current_user)
     user = User.query.filter_by(email=current_user['email']).first()
+
     if user and check_password_hash(user.password, current_user['password']):
-        return 'ok'
+        status = {'login_status': 'true'}
+        resp = make_response(jsonify(status), 201)
+        return resp
     else:
-        return abort(401)
+        abort(401)
 
 
 @app.route('/registration', methods=['POST'])

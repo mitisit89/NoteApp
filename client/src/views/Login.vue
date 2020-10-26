@@ -55,23 +55,34 @@ export default {
   },
   methods: {
     Login: function () {
-    let loginData = {
-      email:this.email,
-      password:this.password
-    }
-     fetch('http://127.0.0.1:5000/api/auth/login',{
-       method:'POST',
-       headers:{
-         'Content-Type': 'application/json;utf-8'
-       },
-       body:JSON.stringify(loginData)
-     }).then(response=>{
-       if (response.ok){
-          this.$router.push('/')
-       }else{
-         console.log('нема юзера и праоля');
-       }
-     }).catch(e=>console.error(e))
+      const loginData = {
+        email: this.email,
+        password: this.password,
+      };
+
+      fetch("http://dev.localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;utf-8",
+          Accept: "/",
+          Connection: "keep-alive",
+        },
+        credentials: "include",
+
+        body: JSON.stringify(loginData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            response.json().then((json) => {
+              Object.entries(json).map(([key, value]) => {
+                localStorage.setItem(key, value);
+              });
+            });
+          } else {
+            console.log("Не правильный логин и пароль");
+          }
+        })
+        .catch((e) => console.error(e));
     },
   },
 };
