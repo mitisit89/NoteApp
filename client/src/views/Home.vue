@@ -3,7 +3,7 @@
     <h1>The Book of Recipe</h1>
     <div class="row">
       <RecipeCard
-        v-for="todo of todos"
+        v-for="todo of getPosts"
         v-bind:todo="todo"
         :key="todo.id"
         v-on:remove-item="RemoveItem"
@@ -14,28 +14,17 @@
 
 <script>
 import RecipeCard from "@/components/RecipeCard";
+import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     RecipeCard,
   },
-  data() {
-    return {
-      todos: [],
-    };
+  computed: mapGetters(["getPosts"]),
+  async mounted() {
+    this.fetchPosts()
   },
-  mounted() {
-    fetch("http://127.0.0.1:5000/api/getData", {
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-        Allow: "http://10.0.1.9:8080/",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        this.todos = json;
-      });
-  },
-  methods: {
+  methods: 
+    mapActions(['fetchPosts']),
     RemoveItem(id) {
       console.log(id);
       this.todos = this.todos.filter((t) => t.id !== id);
@@ -44,7 +33,7 @@ export default {
         method: "DELETE",
       });
     },
-  },
+  
 };
 </script>
 
@@ -52,7 +41,7 @@ export default {
 .container {
   display: flex;
   flex: 1;
-   max-width: 1440px;
+  max-width: 1440px;
   margin: 0px auto;
   padding: 0px 15px;
   z-index: 1;
@@ -79,17 +68,20 @@ h1 {
   flex-wrap: wrap;
 }
 @media (max-width: 1400px) {
-  .container , #navigaton {
+  .container,
+  #navigaton {
     max-width: 970px;
   }
 }
 @media (max-width: 992px) {
-  .container,#navigaton {
+  .container,
+  #navigaton {
     max-width: 750px;
   }
 }
 @media (max-width: 767px) {
-  .container,#navigaton {
+  .container,
+  #navigaton {
     max-width: none;
   }
 }
