@@ -1,3 +1,4 @@
+import uuid
 from flask import request, make_response, jsonify
 from flask_cors import cross_origin
 from werkzeug.exceptions import abort
@@ -26,18 +27,16 @@ def check_current_user():
         abort(401)
 
 
-@app.route('/registration', methods=['POST'])
+@app.route('/api/auth/registration', methods=['POST'])
 @cross_origin()
 def create_new_user():
-    new_user = request.json()
+    new_user = request.get_json()
     check_email = User.query.filter_by(email=new_user['email']).first()
     if check_email is None:
-        user_name = new_user['username']
-        email = new_user['email']
         password = generate_password_hash(new_user['password'], "sha256")
-        add_new_user = User(username=user_name, email=email, password=password)
+        add_new_user = User(public_id=str(uuid.uuid4()), username=new_user['username'], email=new_user['email'], password=password )
         db.session.add(add_new_user)
         db.session.commit()
-        return '200'
+        return jsonify({'msg':'The new user created'}),200
     else:
-        return abort(404)
+        return jsonify({'msg':'The username/email are exist'}),403
