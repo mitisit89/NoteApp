@@ -20,7 +20,7 @@ export default {
         const newObjectItem = {
 
           title: this.title,
-          body:this.body
+          body:this.body,
         };
         this.$emit('add-item', newObjectItem)
       }
