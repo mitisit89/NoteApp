@@ -8,7 +8,7 @@ module.exports = {
     'eslint:recommended'
   ],
   parserOptions: {
-    ecmaVersion: 2017
+    ecmaVersion: 2018
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
