@@ -1,4 +1,6 @@
 import uuid
+import jwt
+import datetime
 from flask import request, make_response, jsonify
 from flask_cors import cross_origin
 from werkzeug.exceptions import abort
@@ -20,9 +22,9 @@ def check_current_user():
     user = User.query.filter_by(email=current_user['email']).first()
 
     if user and check_password_hash(user.password, current_user['password']):
-        status = {'login_status': 'true'}
-        resp = make_response(jsonify(status), 201)
-        return resp
+        token = jwt.encode(
+            {'user': current_user['email'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},app.config['SECRET_KEY'])
+        return jsonify({'token': token.decode('UTF-8'), 'pub_id': user.public_id}), 201
     else:
         abort(401)
 
@@ -34,9 +36,10 @@ def create_new_user():
     check_email = User.query.filter_by(email=new_user['email']).first()
     if check_email is None:
         password = generate_password_hash(new_user['password'], "sha256")
-        add_new_user = User(public_id=str(uuid.uuid4()), username=new_user['username'], email=new_user['email'], password=password )
+        add_new_user = User(public_id=str(uuid.uuid4()), username=new_user['username'], email=new_user['email'],
+                            password=password)
         db.session.add(add_new_user)
         db.session.commit()
-        return jsonify({'msg':'The new user created'}),200
+        return jsonify({'msg': 'The new user created'}), 201
     else:
-        return jsonify({'msg':'The username/email are exist'}),403
+        return jsonify({'msg': 'The username/email are exist'}), 403
