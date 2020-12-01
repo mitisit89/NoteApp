@@ -1,16 +1,20 @@
 export default {
   actions: {
-    async authData() {
+    async authLogin(context, data) {
       const headers = { "Content-Type": "application/json;charset=utf-8" };
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/getData",
-        headers
-      );
+      const body = JSON.stringify(data);
+      const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+        method: "POST",
+        headers: headers,
+        body: body,
+      });
       if (response.ok) {
-        const json = await response.json();
-        Object.entries(json).map(([key, value]) => {
-          localStorage.setItem(key, value);
-        });
+        const json = await response.json()
+        for (const [key,value] of Object.entries(json)) {
+          localStorage.setItem(`${key}`,value)
+        }
+        this.$router.push('/')
+        context.commit('loginStatus',localStorage.getItem("token"))
       }
     },
     async authRegistration(ctx, data) {
@@ -26,22 +30,29 @@ export default {
       );
       if (response.ok) {
         console.log("ok");
+        this.$router.push('/login')
       }
-    },
+    },async logout(context){
+      localStorage.clear()
+      console.log('cleared');
+      context.commit('refreshVeux')
+     }
   },
   mutations: {
-    updateComponent(state, isLogin) {
-      state.keys = isLogin;
+    loginStatus(state,token){
+      state.isLogin='logged',
+      state.token=token
+    }
+        
     },
-  },
   state: {
-    isLogin: "",
+    isLogin:'',
     token: localStorage.getItem("token") || "",
-    user: [],
+    uID:localStorage.getItem("uid") || "",
   },
   getters: {
-    UserAuthData(state) {
-      return state.user;
-    },
+    getIslogin(state){
+      return state.isLogin
+    }
   },
 };
