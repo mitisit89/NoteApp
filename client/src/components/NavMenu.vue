@@ -5,22 +5,25 @@
         <li class="nav-link">
           <router-link to="/">Главная</router-link>
         </li>
-
         <li class="nav-link">
           <router-link to="/page2">Page2</router-link>
         </li>
-        <li class="nav-link">
-          <router-link to="/create">create</router-link>
-        </li>
-        <li class="nav-link">
-          <a href="#">Выход</a>
-        </li>
-        <li class="nav-link">
-          <router-link to="/login">Вход</router-link>
-        </li>
-        <li class="nav-link">
-          <router-link to="/registration">Регистрация </router-link>
-        </li>
+        <template v-if="getIslogin === 'logged'">
+          <li class="nav-link" v-if="checkLogin === true">
+            <router-link to="/create">create</router-link>
+          </li>
+          <li class="nav-link">
+            <a v-on:click="Logout" href="/">Выход</a>
+          </li>
+        </template>
+        <template v-else>
+          <li class="nav-link">
+            <router-link to="/login">Вход</router-link>
+          </li>
+          <li class="nav-link">
+            <router-link to="/registration">Регистрация </router-link>
+          </li>
+        </template>
       </ul>
     </div>
     <button id="search" type="submint">
@@ -30,8 +33,18 @@
 </template>
 
 <script>
-
-
+import { mapActions, mapGetters } from "vuex";
+export default {
+  computed:mapGetters(["getIslogin"]),
+  methods: {
+    ...mapActions(["logout"]),
+    Logout() {
+      this.logout();
+      this.$router.push("/");
+    },
+   
+  },
+};
 </script>
 
 <style>
