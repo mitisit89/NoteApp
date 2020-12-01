@@ -46,6 +46,7 @@ input {
 }
 </style>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -54,35 +55,12 @@ export default {
     };
   },
   methods: {
-    Login: function () {
-      const loginData = {
+    ...mapActions(["authLogin"]),
+    Login() {
+      this.authLogin({
         email: this.email,
         password: this.password,
-      };
-
-      fetch("http://dev.localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;utf-8",
-          Accept: "/",
-          Connection: "keep-alive",
-        },
-        credentials: "include",
-
-        body: JSON.stringify(loginData),
-      })
-        .then((response) => {
-          if (response.ok) {
-            response.json().then((json) => {
-              Object.entries(json).map(([key, value]) => {
-                localStorage.setItem(key, value);
-              });
-            });
-          } else {
-            console.log("Не правильный логин и пароль");
-          }
-        })
-        .catch((e) => console.error(e));
+      });
     },
   },
 };
