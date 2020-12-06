@@ -3,10 +3,10 @@
     <h1>The Book of Recipe</h1>
     <div class="row">
       <RecipeCard
-        v-for="todo of getPosts"
-        v-bind:todo="todo"
-        :key="todo.id"
-        v-on:remove-item="RemoveItem"
+        v-for="post of getPosts"
+        v-bind:post="post"
+        :key="post.id"
+        v-on:remove-item="removePost"
       />
     </div>
   </div>
@@ -21,19 +21,9 @@ export default {
   },
   computed: mapGetters(["getPosts"]),
   async mounted() {
-    this.fetchPosts()
+    this.fetchPosts();
   },
-  methods: 
-    mapActions(['fetchPosts']),
-    RemoveItem(id) {
-      console.log(id);
-      this.todos = this.todos.filter((t) => t.id !== id);
-
-      fetch(`http://127.0.0.1:5000/api/delData/${id}`, {
-        method: "DELETE",
-      });
-    },
-  
+  methods: mapActions(["fetchPosts", "removePost"]),
 };
 </script>
 
