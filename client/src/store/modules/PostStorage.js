@@ -12,6 +12,18 @@ export default {
       const posts = await response.json();
       context.commit("update", posts);
     },
+    async addPost(context, post) {
+      console.log(post);
+      const response = await fetch("http://127.0.0.1:5000/api/postData", {
+        method: "POST",
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+        body: JSON.stringify(post),
+      });
+      if(response.ok){
+      context.commit('update',post)
+      this.$router.push('/')
+    }
+    },
     async removePost(context, id) {
       console.log(id);
       const response = await fetch(`http://127.0.0.1:5000/api/delData/${id}`, {
