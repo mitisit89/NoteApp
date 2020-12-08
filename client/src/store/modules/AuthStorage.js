@@ -42,7 +42,8 @@ export default {
   },
   mutations: {
     loginStatus(state, token) {
-      (state.isLogin = "logged"), (state.token = token);
+      state.isLogin = "logged" 
+      state.token = token;
     },
   },
   state: {

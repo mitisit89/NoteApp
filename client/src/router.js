@@ -9,14 +9,14 @@ import store from "@/store";
 Vue.use(Router);
 //переделать 
 const ifNotLogin = (to, from, next) => {
-  if (!store.getters.getIslogin) {
+  if (!store.getters.getLoginStatus) {
     next();
     return;
   }
   next("/");
 };
 const ifLogin = (to, from, next) => {
-  if (store.getters.getIslogin) {
+  if (store.getters.getLoginStatus) {
     next();
     return;
   }

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmint">
     <h2>Добавить</h2>
-    <input type="text" v-model="title"/>
+    <input type="text" v-model="title" />
     <textarea v-model="body"></textarea>
     <button type="submit">Add</button>
   </form>
@@ -11,27 +11,26 @@ export default {
   data() {
     return {
       title: "",
-      body:""
+      body: "",
     };
   },
   methods: {
     onSubmint() {
       if (this.title.trim()) {
         const newObjectItem = {
-
           title: this.title,
-          body:this.body,
+          body: this.body,
         };
-        this.$emit('add-item', newObjectItem)
+        this.$emit("add-item", newObjectItem);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 form {
-align-self: flex-start;
+  align-self: flex-start;
   display: grid;
   justify-items: center;
   align-items: center;

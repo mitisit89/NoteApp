@@ -4,8 +4,6 @@
     <input
       class="form-input"
       type="text"
-      name=""
-      id=""
       placeholder="Username"
       v-model="username"
     />
