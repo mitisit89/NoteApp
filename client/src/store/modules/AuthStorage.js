@@ -3,19 +3,16 @@ export default {
   actions: {
     async authLogin(context, data) {
       const headers = { "Content-Type": "application/json;charset=utf-8" };
-      const body = JSON.stringify(data);
       const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
         method: "POST",
         headers: headers,
-        body: body,
+        body: JSON.stringify(data),
       });
       if (response.ok) {
         const json = await response.json();
-        for (const [key, value] of Object.entries(json)) {
-          localStorage.setItem(`${key}`, value);
-        }
+
         router.push("/");
-        context.commit("loginStatus", localStorage.getItem("token"));
+        context.commit("loginStatus", json);
       }
     },
     async authRegistration(ctx, data) {
@@ -41,10 +38,15 @@ export default {
     },
   },
   mutations: {
-    loginStatus(state, token) {
-      state.isLogin = "logged" 
-      state.token = token;
+    loginStatus(state, data) {
+      for (const [key, value] of Object.entries(data)) {
+        localStorage.setItem(`${key}`, value);
+      }
+      if (localStorage.getItem("token")) {
+        return state.isLogin = "logged";
+      }
     },
+    
   },
   state: {
     isLogin: "",
@@ -55,5 +57,8 @@ export default {
     getLoginStatus(state) {
       return state.isLogin;
     },
+    getToken(state){
+      return state.token;
+    }
   },
 };

@@ -1,3 +1,4 @@
+import router from "@/router";
 export default {
   actions: {
     async fetchPosts(context) {
@@ -20,9 +21,10 @@ export default {
         body: JSON.stringify(post),
       });
       if(response.ok){
-      context.commit('update',post)
-      this.$router.push('/')
-    }
+        router.push('/')
+      
+      context.commit()}
+   
     },
     async removePost(context, id) {
       console.log(id);

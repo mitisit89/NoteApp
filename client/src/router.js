@@ -29,7 +29,6 @@ export default new Router({
     {
       path: "/",
       component: Home,
-      beforeEnter: ifNotLogin,
     },
     {
       path: "/page2",
