@@ -10,7 +10,7 @@ import "material-design-icons/iconfont/material-icons.css";
 
 export default {
   components: {
-    NavMenu, 
+    NavMenu,
   },
 };
 </script>
@@ -25,7 +25,7 @@ export default {
 html,
 body {
   font-family: "Ubuntu", sans-serif;
-  background-color: #f1f5ff;
+  background-color: #FAFAFA;
   margin: 0;
   padding: 0;
   
@@ -38,4 +38,5 @@ a {
 li {
   list-style-type: none;
 }
+
 </style>

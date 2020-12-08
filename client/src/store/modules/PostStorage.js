@@ -28,7 +28,7 @@ export default {
       state.posts = posts;
     },
     remove(state, id) {
-      state.posts = state.posts.filter((todo) => todo.id !== id);
+      state.posts = state.posts.filter((todo) => todo.id !== id); // метод filter возвращает новый массив
     },
   },
   state: {

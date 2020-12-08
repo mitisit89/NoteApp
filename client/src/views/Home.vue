@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>The Book of Recipe</h1>
     <div class="row">
       <RecipeCard
         v-for="post of getPosts"
@@ -39,7 +38,7 @@ export default {
   justify-content: space-around;
   position: relative;
   flex-direction: column;
-  background-color: #8fabf2;
+  background-color:#BDBDBD;
 }
 
 h1 {

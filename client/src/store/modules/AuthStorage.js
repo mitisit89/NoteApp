@@ -1,3 +1,4 @@
+import router from "@/router";
 export default {
   actions: {
     async authLogin(context, data) {
@@ -9,12 +10,12 @@ export default {
         body: body,
       });
       if (response.ok) {
-        const json = await response.json()
-        for (const [key,value] of Object.entries(json)) {
-          localStorage.setItem(`${key}`,value)
+        const json = await response.json();
+        for (const [key, value] of Object.entries(json)) {
+          localStorage.setItem(`${key}`, value);
         }
-        this.$router.push('/')
-        context.commit('loginStatus',localStorage.getItem("token"))
+        router.push("/");
+        context.commit("loginStatus", localStorage.getItem("token"));
       }
     },
     async authRegistration(ctx, data) {
@@ -30,29 +31,28 @@ export default {
       );
       if (response.ok) {
         console.log("ok");
-        this.$router.push('/login')
+        this.$router.push("/login");
       }
-    },async logout(context){
-      localStorage.clear()
-      console.log('cleared');
-      context.commit('refreshVeux')
-     }
+    },
+    async logout(context) {
+      localStorage.clear();
+      console.log("cleared");
+      context.commit();
+    },
   },
   mutations: {
-    loginStatus(state,token){
-      state.isLogin='logged',
-      state.token=token
-    }
-        
+    loginStatus(state, token) {
+      (state.isLogin = "logged"), (state.token = token);
     },
+  },
   state: {
-    isLogin:'',
+    isLogin: "",
     token: localStorage.getItem("token") || "",
-    uID:localStorage.getItem("uid") || "",
+    uID: localStorage.getItem("uid") || "",
   },
   getters: {
-    getIslogin(state){
-      return state.isLogin
-    }
+    getLoginStatus(state) {
+      return state.isLogin;
+    },
   },
 };
