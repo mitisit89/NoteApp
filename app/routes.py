@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
+from flask_cors import cross_origin
+
 from app import app, db
 from app.models import Recipe
-from flask_cors import cross_origin
+from app.utilits import check_token
 
 
 @app.route('/api/getData', methods=['GET'])
@@ -18,6 +20,7 @@ def get():
 
 @app.route('/api/postData', methods=['POST'])
 @cross_origin()
+@check_token
 def post():
     client_json = request.get_json()
     print(client_json)
@@ -29,6 +32,7 @@ def post():
 
 @app.route('/api/delData/<elem_id>', methods=['DELETE'])
 @cross_origin()
+@check_token
 def delete(elem_id):
     delete_item = Recipe.query.get(elem_id)
     db.session.delete(delete_item)
