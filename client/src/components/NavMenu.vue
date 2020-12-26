@@ -1,12 +1,12 @@
 <template>
   <header>
-    <b-navbar >
+    <b-navbar type="is-dark" >
       <template slot="start">
          <b-navbar-item tag="router-link" :to="{ path: '/' }">Home</b-navbar-item>
           <b-navbar-item>
             <router-link to="/page2">Page2</router-link>
           </b-navbar-item>
-          <template v-if="getLoginStatus === 'logged'">
+          <template tag="end" v-if="getLoginStatus === 'logged'">
             <b-navbar-item tag="router-link" :to="{ path: '/create' }">
               Add
             </b-navbar-item>
@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style>
+
 header {
   position: relative;
   z-index: 1000;
@@ -95,4 +96,5 @@ header {
   font-style: normal;
   font-weight: 400;
 }
+
 </style>
