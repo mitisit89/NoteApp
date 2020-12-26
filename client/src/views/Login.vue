@@ -2,10 +2,10 @@
   <form @submit.prevent="Login" name="LoginForm">
     <h1>Login</h1>
     <div class="form-input">
-      <input type="email" name="email" placeholder="email" v-model="email" />
+      <b-input type="email" name="email" placeholder="email" v-model="email" />
     </div>
     <div class="form-input">
-      <input
+      <b-input
         type="password"
         name="passowrd"
         placeholder="password"

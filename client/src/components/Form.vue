@@ -1,8 +1,9 @@
 <template>
   <form @submit.prevent="onSubmint">
     <h2>Добавить</h2>
-    <input type="text" v-model="title" />
-    <textarea v-model="body"></textarea>
+     <b-field label="Title">
+    <b-input type="text" v-model="title" /></b-field>
+    <b-input type='textarea' v-model="body"></b-input>
     <button type="submit">Add</button>
   </form>
 </template>

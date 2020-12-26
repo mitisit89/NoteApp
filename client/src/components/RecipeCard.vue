@@ -1,10 +1,10 @@
 <template>
   <div class="card">
     <h2 class="card-title">{{ post.title }}</h2>
-    <div class="card-body">{{ post.body }}</div>
+    <div class="content">{{ post.body }}</div>
     <div class="meta">
-      <span class="datetime">{{ post.time }}</span>
-      <span class="tags">tags</span>
+      <time class="datetime">{{ post.time }}</time>
+      <b-tag type="is-info">tags</b-tag>
     </div>
     <button class="rm-btn" v-on:click="$emit('remove-item', post.id)">
       <span class="material-icons"> delete </span>
