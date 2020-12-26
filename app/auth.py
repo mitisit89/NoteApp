@@ -1,9 +1,8 @@
 import uuid
 import jwt
 import datetime
-from flask import request, make_response, jsonify
+from flask import request, jsonify
 from flask_cors import cross_origin
-from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import app, db
@@ -26,7 +25,7 @@ def check_current_user():
             {'user': current_user['email'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},app.config['SECRET_KEY'])
         return jsonify({'token': token.decode('UTF-8'), 'pub_id': user.public_id}), 201
     else:
-        abort(401)
+        return jsonify({'error':'неверный логин или пароль'}),401
 
 
 @app.route('/api/auth/registration', methods=['POST'])

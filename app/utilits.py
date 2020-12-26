@@ -17,9 +17,9 @@ def check_token(func):
             return jsonify({'msg': 'Token is missing'})
         try:
             data = jwt.decode(token, app.config['SECRET_KEYS'])
-            curent_user = User.qurey.fillter_by(public_id=data['public_id']).first()
+            current_user = User.qurey.fillter_by(public_id=data['public_id']).first()
         except:
             return jsonify(jsonify({'msg': 'Token is ok'}))
-        return func(curent_user, *args, **kwargs)
+        return func(current_user, *args, **kwargs)
 
     return decorator
