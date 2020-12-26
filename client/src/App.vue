@@ -8,6 +8,7 @@
 import NavMenu from "@/components/NavMenu";
 import "material-design-icons/iconfont/material-icons.css";
 
+import 'buefy/dist/buefy.css'
 export default {
   components: {
     NavMenu,

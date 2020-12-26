@@ -1,37 +1,29 @@
 <template>
   <header>
-    <div class="nav-toggle">
-      <span  class="material-icons" v-on:click='show = !show'  > menu </span>
-    </div>
-    <nav id="navigation" v-show="!show">
-      <span v-on:click='show = !show' class="material-icons"> close </span>
-      <div class="nav-menu">
-        <ul class="nav-list">
-          <li class="nav-link">
-            <router-link to="/">Главная</router-link>
-          </li>
-          <li class="nav-link">
+    <b-navbar >
+      <template slot="start">
+         <b-navbar-item tag="router-link" :to="{ path: '/' }">Home</b-navbar-item>
+          <b-navbar-item>
             <router-link to="/page2">Page2</router-link>
-          </li>
+          </b-navbar-item>
           <template v-if="getLoginStatus === 'logged'">
-            <li class="nav-link">
-              <router-link to="/create">create</router-link>
-            </li>
-            <li class="nav-link">
+            <b-navbar-item tag="router-link" :to="{ path: '/create' }">
+              Add
+            </b-navbar-item>
+            <b-navbar-item>
               <a v-on:click="logout" href="/">Выход</a>
-            </li>
+            </b-navbar-item>
           </template>
-          <template v-else>
-            <li class="nav-link">
-              <router-link to="/login">Вход</router-link>
-            </li>
-            <li class="nav-link">
-              <router-link to="/registration">Регистрация </router-link>
-            </li>
+          <template  v-else>
+            <b-navbar-item>
+              <router-link  class="button is-primary" to="/login">Вход</router-link>
+            </b-navbar-item>
+            <b-navbar-item>
+              <router-link class="button"  to="/registration">Регистрация </router-link>
+            </b-navbar-item>
           </template>
-        </ul>
-      </div>
-    </nav>
+    </template>
+    </b-navbar>
   </header>
 </template>
 
@@ -73,7 +65,6 @@ header {
 .nav-list,
 .auth-list {
   display: flex;
-  flex-direction: column;
   justify-items: space-around;
   max-width: 1000px;
   padding: 1rem;
