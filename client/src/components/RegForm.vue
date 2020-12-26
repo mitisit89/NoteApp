@@ -1,20 +1,16 @@
 <template>
-    <form @submit.prevent="onSubmint">
-        <b-field label="Name">
-            <b-input v-model="name"></b-input>
-        </b-field>
-
+    <form @submit.prevent="onSub">
         <b-field label="Email"
             type="is-danger"
             message="This email is invalid">
             <b-input type="email"
                 v-model="email"
-                maxlength="30">
-            </b-input>
+                maxlength="30" />
         </b-field>
         <b-field label="Username">
             <b-input
-            ></b-input>
+            v-model="username"
+            />
         </b-field>
         <b-field label="Password">
             <b-input type="password"
@@ -23,29 +19,28 @@
             </b-input>
             <p>Hell</p>
         </b-field>
-    </form>
+   <b-button class="button is-primary">Search</b-button>
+   </form>
 </template>
 
 <script>
-export default{
-    el:'b-field ',
+export default {
     data(){
         return{
-            email:"",
-            username:"",
-            password:""
+            email:'',
+            username:'',
+            password:''
         }
     },
-    methods:{onSubmint(){
-       const newUser={
-           email:this.email,
-           username:this.username,
-           password:this.password
-       }
-       this.$emit('addNewUser',newUser)
-    }}
-    
+    methods:{
+        onSub(){
+            const newUser={
+                email:this.email,
+            username:this.username,
+            password:this.password
+            }
+            this.$emit('add-new-user',newUser)
+        }
+    }
 }
-
-
 </script>

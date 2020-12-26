@@ -1,16 +1,14 @@
 <template>
- <RegForm @addNewUser='authRegistration' />
+  <RegForm />
 </template>
 
-<style scoped>
-
-</style>
 <script>
+import RegForm from '@/components/RegForm';
 import { mapActions } from "vuex";
-import RegForm from '../components/RegForm';
+
 export default {
-  componets:{
-    RegForm
+  components:{
+    RegForm,
   },
   methods: mapActions(["authRegistration"]),
 
