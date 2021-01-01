@@ -28,7 +28,8 @@ export default {
       );
       if (response.ok) {
         console.log("ok");
-        this.$router.push("/login");
+        ctx.commit()
+        router.push("/login");
       }
     },
     async logout(context) {

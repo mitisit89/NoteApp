@@ -1,5 +1,5 @@
 <template>
-  <RegForm />
+  <RegForm @add-new-user="authRegistration"/>
 </template>
 
 <script>
