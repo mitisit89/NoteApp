@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <NavMenu />
+    <router-view/>
     <div class="row">
       <RecipeCard
         v-for="post of getPosts"
@@ -14,9 +16,12 @@
 <script>
 import RecipeCard from "@/components/RecipeCard";
 import { mapGetters, mapActions } from "vuex";
+import NavMenu from "@/components/NavMenu"
+
 export default {
   components: {
     RecipeCard,
+    NavMenu,
   },
   computed: mapGetters(["getPosts"]),
   async mounted() {

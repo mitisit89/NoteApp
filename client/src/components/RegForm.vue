@@ -7,7 +7,7 @@
       <b-input v-model="username" />
     </b-field>
     <b-field label="Password">
-      <b-input type="password" v-model="password" password-reveal> </b-input>
+      <b-input type="password"  v-model="password" password-reveal> </b-input>
     </b-field>
     <b-button class="button is-primary" native-type=submit>Подтвердить</b-button>
   </form>
