@@ -1,6 +1,6 @@
 from flask import Flask
-from flask_migrate import Migrate
 from flask_cors import CORS
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Configuration
@@ -11,5 +11,4 @@ CORS(app, supports_credentials=True, withCredentials=True)
 db = SQLAlchemy(app)
 from app.models import User, Recipe
 migrate = Migrate(app, db)
-from app import auth
-from app import routes
+from app import auth, routes
