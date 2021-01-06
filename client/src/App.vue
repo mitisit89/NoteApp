@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <NavMenu/>
-    <router-view/>
+    <WellcomePage/>
   </div>
 </template>
 <script>
-import NavMenu from "@/components/NavMenu";
 import "material-design-icons/iconfont/material-icons.css";
-
+import WellcomePage  from '@/views/WellcomePage'
 import 'buefy/dist/buefy.css'
 export default {
   components: {
-    NavMenu,
+   WellcomePage
   },
 };
 </script>

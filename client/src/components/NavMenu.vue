@@ -14,14 +14,6 @@
               <a v-on:click="logout" href="/">Выход</a>
             </b-navbar-item>
           </template>
-          <template  v-else>
-            <b-navbar-item>
-              <router-link  class="button is-primary" to="/login">Вход</router-link>
-            </b-navbar-item>
-            <b-navbar-item>
-              <router-link class="button"  to="/registration">Регистрация </router-link>
-            </b-navbar-item>
-          </template>
     </template>
     </b-navbar>
   </header>
