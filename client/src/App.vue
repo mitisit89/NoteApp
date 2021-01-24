@@ -1,17 +1,11 @@
 <template>
   <div id="app">
-    <WellcomePage/>
+    <router-view/>
   </div>
 </template>
 <script>
 import "material-design-icons/iconfont/material-icons.css";
-import WellcomePage  from '@/views/WellcomePage'
 import 'buefy/dist/buefy.css'
-export default {
-  components: {
-   WellcomePage
-  },
-};
 </script>
 
 <style>

@@ -21,7 +21,7 @@ export default {
         body: JSON.stringify(post),
       });
       if(response.ok){
-        router.push('/')
+        router.push('/home')
       
       context.commit()}
    

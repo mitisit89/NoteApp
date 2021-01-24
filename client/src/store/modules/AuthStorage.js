@@ -2,7 +2,7 @@ import router from "@/router";
 export default {
   actions: {
     async authLogin(context, data) {
-      const headers = { "Content-Type": "application/json;charset=utf-8" };
+      const headers = { "Content-Type": "application/json;charset=UTF-8" };
       const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
         method: "POST",
         headers: headers,
@@ -11,7 +11,7 @@ export default {
       if (response.ok) {
         const json = await response.json();
 
-        router.push("/");
+        router.push("/home");
         context.commit("loginStatus", json);
       }
     },

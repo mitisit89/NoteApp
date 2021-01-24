@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <NavMenu />
-    <router-view/>
     <div class="row">
       <RecipeCard
         v-for="post of getPosts"

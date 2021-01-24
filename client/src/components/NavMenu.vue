@@ -1,20 +1,20 @@
 <template>
   <header>
-    <b-navbar type="is-dark" >
+    <b-navbar type="is-dark">
       <template slot="start">
-         <b-navbar-item tag="router-link" :to="{ path: '/' }">Home</b-navbar-item>
-          <b-navbar-item>
-            <router-link to="/page2">Page2</router-link>
+        <b-navbar-item tag="router-link" :to="{ path: '/home' }"
+          >Home</b-navbar-item
+        >
+        <b-navbar-item>
+          <router-link to="/page2">Page2</router-link>
+        </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/create' }">
+            Add
           </b-navbar-item>
-          <template tag="end" v-if="getLoginStatus === 'logged'">
-            <b-navbar-item tag="router-link" :to="{ path: '/create' }">
-              Add
-            </b-navbar-item>
-            <b-navbar-item>
-              <a v-on:click="logout" href="/">Выход</a>
-            </b-navbar-item>
-          </template>
-    </template>
+          <b-navbar-item>
+            <a v-on:click="logout" href="/">Выход</a>
+          </b-navbar-item>
+      </template>
     </b-navbar>
   </header>
 </template>
@@ -22,19 +22,12 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-  data(){
-    return{
-      show:true
-    }
-  },
   computed: mapGetters(["getLoginStatus"]),
   methods: mapActions(["logout"]),
-
 };
 </script>
 
 <style>
-
 header {
   position: relative;
   z-index: 1000;
@@ -88,5 +81,4 @@ header {
   font-style: normal;
   font-weight: 400;
 }
-
 </style>
