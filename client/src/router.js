@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import Page2 from "@/views/Page2";
 import CreateNote from "@/views/CreateNote";
-import WellcomePage from "@/views/WellcomePage"
+import WelcomePage from "@/views/WellcomePage"
 Vue.use(Router);
 //переделать 
 
@@ -14,7 +14,7 @@ export default new Router({
   routes: [
     {
       path:'/',
-      component:WellcomePage
+      component:WelcomePage
     },
 
     {
