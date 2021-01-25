@@ -8,11 +8,13 @@ export default {
         headers: headers,
         body: JSON.stringify(data),
       });
-      if (response.ok) {
-        const json = await response.json();
 
-        router.push("/home");
-        context.commit("loginStatus", json);
+      if (response.ok) {
+          const json = await response.json() ;
+          console.log(json);
+          localStorage.setItem('token',json.token)
+        context.commit("updateStatus", 'Ok');
+        router.push('/home')
       }
     },
     async authRegistration(ctx, data) {
@@ -39,24 +41,19 @@ export default {
     },
   },
   mutations: {
-    loginStatus(state, data) {
-      for (const [key, value] of Object.entries(data)) {
-        localStorage.setItem(`${key}`, value);
-      }
-      if (localStorage.getItem("token")) {
-        return state.isLogin = "logged";
-      }
+    updateStatus(state, status) {
+      state.Status=status
     },
     
   },
   state: {
-    isLogin: "",
+    Status: "",
     token: localStorage.getItem("token") || "",
     uID: localStorage.getItem("uid") || "",
   },
   getters: {
-    getLoginStatus(state) {
-      return state.isLogin;
+      getStatus(state) {
+      return state.Status;
     },
     getToken(state){
       return state.token;
