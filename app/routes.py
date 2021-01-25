@@ -20,19 +20,17 @@ def get():
 
 @app.route('/api/postData', methods=['POST'])
 @cross_origin()
-@check_token
 def post():
     client_json = request.get_json()
     print(client_json)
     data = Recipe(title=client_json['title'], body=client_json['body'])
     db.session.add(data)
     db.session.commit()
-    return '201'  # нужно возвращать строку
+    return '200' # нужно возвращать строку
 
 
 @app.route('/api/delData/<elem_id>', methods=['DELETE'])
 @cross_origin()
-@check_token
 def delete(elem_id):
     delete_item = Recipe.query.get(elem_id)
     db.session.delete(delete_item)

@@ -3,27 +3,20 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import Page2 from "@/views/Page2";
 import CreateNote from "@/views/CreateNote";
-import store from "@/store";
+import WellcomePage from "@/views/WellcomePage"
 Vue.use(Router);
 //переделать 
-const ifNotLogin = (to, from, next) => {
-  if (!store.getters.getLoginStatus) {
-    next();
-    return;
-  }
-  next("/");
-};
-const ifLogin = (to, from, next) => {
-  if (store.getters.getLoginStatus) {
-    next();
-    return;
-  }
-  next("/home");
-};
+
+
 
 export default new Router({
   mode: "history",
   routes: [
+    {
+      path:'/',
+      component:WellcomePage
+    },
+
     {
       path: "/home",
       component: Home,
@@ -31,12 +24,12 @@ export default new Router({
     {
       path: "/page2",
       component: Page2,
-      beforeEnter: ifNotLogin,
+     
     },
     {
       path: "/create",
       component: CreateNote,
-      beforeEnter: ifLogin,
+
     },
   ],
 });
