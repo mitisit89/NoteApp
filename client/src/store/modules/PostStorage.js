@@ -4,27 +4,30 @@ export default {
     async fetchPosts(context) {
       const headers = {
         "Content-Type": "application/json;charset=utf-8",
-        Allow: "http://10.0.1.9:8080/",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       };
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/getData",
-        headers
-      );
+      const response = await fetch("http://127.0.0.1:5000/api/getData", {
+        method: "Get",
+        headers: headers,
+      });
       const posts = await response.json();
+      console.log(posts);
       context.commit("update", posts);
     },
     async addPost(context, post) {
       console.log(post);
       const response = await fetch("http://127.0.0.1:5000/api/postData", {
         method: "POST",
-        headers: { "Content-Type": "application/json;charset=utf-8" },
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(post),
       });
-      if(response.ok){
-        router.push('/')
-      
-      context.commit()}
-   
+      if (response.ok) {
+        context.commit("update", post);
+        router.push("/home");
+      }
     },
     async removePost(context, id) {
       console.log(id);

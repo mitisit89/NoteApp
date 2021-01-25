@@ -22,10 +22,14 @@ def check_current_user():
 
     if user and check_password_hash(user.password, current_user['password']):
         token = jwt.encode(
-            {'user': current_user['email'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},app.config['SECRET_KEY'])
-        return jsonify({'token': token.decode('UTF-8'), 'pub_id': user.public_id}), 201
+            {'user': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
+            app.config['SECRET_KEY'])
+        print(token)
+        token.encode('UTF-8')
+        # я хз почему но  при передачи token encode на прямую в jsonify выдаёт ошибку ,ведь раньше работало
+        return jsonify({'token': token}), 201
     else:
-        return jsonify({'error':'неверный логин или пароль'}),401
+        return jsonify({'error': 'неверный логин или пароль'}), 401
 
 
 @app.route('/api/auth/registration', methods=['POST'])
