@@ -20,9 +20,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
-  computed: mapGetters(["getLoginStatus"]),
   methods: mapActions(["logout"]),
 };
 </script>
