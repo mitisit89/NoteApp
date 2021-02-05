@@ -3,18 +3,16 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import Page2 from "@/views/Page2";
 import CreateNote from "@/views/CreateNote";
-import WellcomePage from "@/views/WellcomePage"
+import WelcomePage from "@/views/WellcomePage";
 Vue.use(Router);
-//переделать 
-
-
+//переделать
 
 export default new Router({
   mode: "history",
   routes: [
     {
-      path:'/',
-      component:WellcomePage
+      path: "/",
+      component: WelcomePage,
     },
 
     {
@@ -24,12 +22,10 @@ export default new Router({
     {
       path: "/page2",
       component: Page2,
-     
     },
     {
       path: "/create",
       component: CreateNote,
-
     },
   ],
 });
