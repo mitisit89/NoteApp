@@ -33,6 +33,7 @@ export default {
       console.log(id);
       const response = await fetch(`http://127.0.0.1:5000/api/delData/${id}`, {
         method: "DELETE",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       });
       if (response.ok) {
         console.log("ok");
