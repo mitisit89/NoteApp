@@ -20,7 +20,7 @@ export default {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: ` ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(post),
       });

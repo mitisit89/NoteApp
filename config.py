@@ -10,3 +10,4 @@ class Configuration(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     JSON_SORT_KEYS = False
     CORS_METHODS = ['GET', 'POST', 'OPTION', 'DELETE']
+    JWT_SECRET_KEY = '12e1esdasd513231'

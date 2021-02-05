@@ -1,13 +1,14 @@
 from flask import jsonify, request
 from flask_cors import cross_origin
+from flask_jwt_extended import jwt_required
 
 from app import app, db
 from app.models import Recipe
-from app.utilits import check_token
 
 
 @app.route('/api/getData', methods=['GET'])
 @cross_origin()
+@jwt_required
 def get():
     posts = Recipe.query.all()
     data = []
@@ -20,6 +21,7 @@ def get():
 
 @app.route('/api/postData', methods=['POST'])
 @cross_origin()
+@jwt_required
 def post():
     client_json = request.get_json()
     print(client_json)
@@ -31,6 +33,7 @@ def post():
 
 @app.route('/api/delData/<elem_id>', methods=['DELETE'])
 @cross_origin()
+@jwt_required
 def delete(elem_id):
     delete_item = Recipe.query.get(elem_id)
     db.session.delete(delete_item)
