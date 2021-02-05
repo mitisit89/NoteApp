@@ -1,8 +1,8 @@
 import uuid
-import jwt
-import datetime
+
 from flask import request, jsonify
 from flask_cors import cross_origin
+from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import app, db
@@ -21,12 +21,8 @@ def check_current_user():
     user = User.query.filter_by(email=current_user['email']).first()
 
     if user and check_password_hash(user.password, current_user['password']):
-        token = jwt.encode(
-            {'user': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
-            app.config['SECRET_KEY'])
+        token = create_access_token(identity=current_user)
         print(token)
-        token.encode('UTF-8')
-        # я хз почему но  при передачи token encode на прямую в jsonify выдаёт ошибку ,ведь раньше работало
         return jsonify({'token': token}), 201
     else:
         return jsonify({'error': 'неверный логин или пароль'}), 401
