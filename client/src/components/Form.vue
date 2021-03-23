@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmint">
-    <h2>Добавить</h2>
+      <h1>{{formTitle}}</h1>
      <b-field label="Title">
     <b-input type="text" v-model="title" /></b-field>
     <b-input type='textarea' v-model="body"></b-input>
@@ -9,6 +9,7 @@
 </template>
 <script>
 export default {
+  props:['formTitle'],
   data() {
     return {
       title: "",
