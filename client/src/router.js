@@ -3,9 +3,9 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import Page2 from "@/views/Page2";
 import CreateNote from "@/views/CreateNote";
-import WelcomePage from "@/views/WellcomePage";
+import WelcomePage from "@/views/WelcomePage";
+import EditNote from "@/views/EditNote"
 Vue.use(Router);
-//переделать
 
 export default new Router({
   mode: "history",
@@ -27,5 +27,9 @@ export default new Router({
       path: "/create",
       component: CreateNote,
     },
+    {
+      path:'/edit',
+      component:EditNote,
+    }
   ],
 });
