@@ -2,6 +2,7 @@
   <div class="container">
     <NavMenu />
     <div class="row">
+      <b-input plase> поиск</b-input>
       <RecipeCard
         v-for="post of getPosts"
         v-bind:post="post"
@@ -22,7 +23,9 @@ export default {
     RecipeCard,
     NavMenu,
   },
-  computed: mapGetters(["getPosts"]),
+  computed:{ 
+   ... mapGetters(["getPosts"]),
+  },
   async mounted() {
     this.fetchPosts();
   },

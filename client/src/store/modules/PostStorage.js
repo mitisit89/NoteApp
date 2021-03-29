@@ -20,7 +20,7 @@ export default {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
-          Authorization: ` ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(post),
       });
@@ -33,12 +33,26 @@ export default {
       console.log(id);
       const response = await fetch(`http://127.0.0.1:5000/api/delData/${id}`, {
         method: "DELETE",
+        headers:{
+        Authorization: `Bearer ${localStorage.getItem("token")}`,}
       });
       if (response.ok) {
         console.log("ok");
         context.commit("remove", id);
       }
     },
+    async editPost(context,editedPost){
+      const response = await fetch('http://127.0.0.1:5000/api/postUpdate/',{
+        method:'PUT',
+        headers:{
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+          body:JSON.stringify(editedPost)
+        });
+        if(response.ok){
+          context.commit('update')
+        }
+    }
   },
   mutations: {
     update(state, posts) {
@@ -47,6 +61,7 @@ export default {
     remove(state, id) {
       state.posts = state.posts.filter((todo) => todo.id !== id); // метод filter возвращает новый массив
     },
+    
   },
   state: {
     posts: [],
