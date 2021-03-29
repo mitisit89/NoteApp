@@ -1,50 +1,21 @@
 <template>
-  <form @submit.prevent="Login" name="LoginForm">
-    <h1>Login</h1>
-    <div class="form-input">
-      <b-input type="email" name="email" placeholder="email" v-model="email" />
-    </div>
-    <div class="form-input">
+  <form @submit.prevent="Login" class="box is-mobile"  name="LoginForm">
+    <b-field label='Email' >
+      <b-input type="email" name="email"  v-model="email" />
+    </b-field>
+    <b-field label='Password' >
       <b-input
         type="password"
         name="passowrd"
         placeholder="password"
         v-model="password"
       />
-    </div>
-    <button type="submit">Sing in</button>
+    </b-field>
+    <b-button type="is-success" native-type=submit>Sing in</b-button>
   </form>
 </template>
 
-<style scoped>
-form {
-  align-self: flex-start;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 17rem;
-  width: 14rem;
-  top: 20%;
-  left: 36%;
-  position: absolute;
-}
-button {
-  width: 14rem;
-  height: 2rem;
-  color: white;
-  border-radius: 90px;
-  border: none;
-  background: #3d3d3f;
-  display: inline-block;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-input {
-  height: 3rem;
-}
-.form-input {
-  margin-bottom: 10px;
-}
-</style>
+
 <script>
 import { mapActions } from "vuex";
 export default {
