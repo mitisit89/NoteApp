@@ -2,7 +2,7 @@ import uuid
 
 from flask import request, jsonify
 from flask_cors import cross_origin
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity)
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import app, db
@@ -21,9 +21,10 @@ def check_current_user():
     user = User.query.filter_by(email=current_user['email']).first()
 
     if user and check_password_hash(user.password, current_user['password']):
-        token = create_access_token(identity=current_user)
+        token = create_access_token(identity=current_user, fresh=True)
+        refresh_token = create_refresh_token(identity="example_user")
         print(token)
-        return jsonify({'token': token}), 201
+        return jsonify({'token': token, 'refresh_token': refresh_token}), 201
     else:
         return jsonify({'error': 'неверный логин или пароль'}), 401
 
@@ -42,3 +43,11 @@ def create_new_user():
         return jsonify({'msg': 'The new user created'}), 201
     else:
         return jsonify({'msg': 'The username/email are exist'}), 403
+
+
+@app.route('/api/auth/refresh', methods=['POST'])
+@jwt_required(refresh=True)
+def refresh_token():
+    identity = get_jwt_identity()
+    token = create_access_token(identity=identity, fresh=False)
+    return jsonify({'token': token})

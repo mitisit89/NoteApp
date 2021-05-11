@@ -8,7 +8,7 @@ from app.models import Recipe
 
 @app.route('/api/getData', methods=['GET'])
 @cross_origin()
-@jwt_required
+@jwt_required(fresh=True)
 def get():
     posts = Recipe.query.all()
     data = []
@@ -21,7 +21,7 @@ def get():
 
 @app.route('/api/postData', methods=['POST'])
 @cross_origin()
-@jwt_required
+@jwt_required(fresh=True)
 def post():
     client_json = request.get_json()
     print(client_json)
@@ -33,7 +33,7 @@ def post():
 
 @app.route('/api/delData/<elem_id>', methods=['DELETE'])
 @cross_origin()
-@jwt_required
+@jwt_required(fresh=True)
 def delete(elem_id):
     delete_item = Recipe.query.get(elem_id)
     db.session.delete(delete_item)
